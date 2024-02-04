@@ -34,8 +34,16 @@ export const fetchSingleUser = async (req, res) => {
     const userId = req.params.id;
     const fetchedUser = await prisma.user.findFirst({
         where: {
-            id: Number(userId)
-        }
+            id: Number(userId),
+        },
+        include: {
+            Post: {
+                select: {
+                    title: true,
+                    description: true,
+                },
+            },
+        },
     });
     return res.json({ status: 200, message: 'user fetched.', data: fetchedUser });
 }
