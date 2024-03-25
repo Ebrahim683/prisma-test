@@ -7,7 +7,7 @@ const app = express();
 
 // Middleware
 app.use(bodyParser.json());
-app.use(express.urlencoded({ extends: false }));
+app.use(express.urlencoded({ extended: true }));
 app.use(appRoutes);
 
 
